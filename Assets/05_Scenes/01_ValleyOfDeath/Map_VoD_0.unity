@@ -7214,11 +7214,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::YmneShader.Volumetric.Script_FakeCloudShadow
   shadowColor: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
-  intensity: 1.1
+  intensity: 0.9
   contrast: 1
   edgeSoftness: 0.001
   size: {x: 64, y: 64, z: 64}
-  noiseScale: {x: 8, y: 8, z: 8}
+  noiseScale: {x: 32, y: 32, z: 32}
   speed: {x: 0.25, y: 0.25, z: 0.25}
   boxMesh: {fileID: 259895545}
   shader: {fileID: 4800000, guid: e5f16333157678342b2f237e79e8c964, type: 3}
