@@ -7465,6 +7465,10 @@ PrefabInstance:
       value: 0.29
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: a52372188a5f29341adad95d99ab1d2e, type: 3}
+      propertyPath: m_Name
+      value: Mesh_Mdl_Catacomb
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: a52372188a5f29341adad95d99ab1d2e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 126
       objectReference: {fileID: 0}
