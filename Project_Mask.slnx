@@ -1,0 +1,4 @@
+﻿<Solution>
+  <Project Path="RealtimeCSG.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
+</Solution>

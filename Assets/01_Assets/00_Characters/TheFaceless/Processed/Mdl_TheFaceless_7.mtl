@@ -1,0 +1,4 @@
+#@DL2023 - w:64, h:64
+newmtl x
+map_Kd Mdl_TheFaceless_7.png
+map_Ke Mdl_TheFaceless_7_emit.png
