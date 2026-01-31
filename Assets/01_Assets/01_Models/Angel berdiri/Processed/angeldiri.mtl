@@ -1,0 +1,7 @@
+#@DL2023 - w:1, h:1
+newmtl x
+map_Kd angeldiri.png
+map_Pr angeldiri_extra.png -imfchain r
+map_Pm angeldiri_extra.png -imfchain g
+map_Ns angeldiri_extra.png -imfchain b
+map_Ni angeldiri_extra.png -imfchain l
