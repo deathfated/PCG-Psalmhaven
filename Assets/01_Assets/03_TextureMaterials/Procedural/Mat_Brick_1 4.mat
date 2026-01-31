@@ -55,7 +55,7 @@ Material:
     - _Brightness: 2
     - _ColorVariationScale: 0.5
     - _Density: 1.5
-    - _Dirtiness: 5
+    - _Dirtiness: 0.8
     - _MaterialType: 3
     - _ParallaxSteps: 8
     - _ParallaxStrength: 0.2
