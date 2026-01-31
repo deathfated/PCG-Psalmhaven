@@ -385,7 +385,7 @@ GameObject:
   - component: {fileID: 4303616223151779078}
   m_Layer: 6
   m_Name: Prefab_TheFaceless
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -469,6 +469,26 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 44e832ea-5a7c-4168-a0d2-8f904b3f75fa
     m_ActionName: 'MC/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8940776f-60a3-430b-902e-9e4c2d62a71d
+    m_ActionName: 'UI/Pause[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b7b30c38-1e4a-4fd0-865a-80e2db3ae382
+    m_ActionName: 'UI/RollDice[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9fa34dc9-e7d5-401c-953a-a249da6058bd
+    m_ActionName: 'Debug/SetHealth[/Keyboard/1]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9aabfa9e-763e-420d-b529-39325334cd4c
+    m_ActionName: 'Debug/SetGold[/Keyboard/2]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: af437696-b6cc-4f4a-86e0-12efc6045114
+    m_ActionName: 'Debug/Board[/Keyboard/3]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: MC
@@ -515,6 +535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Psalmhaven.PlayerController
   moveSpeed: 6
   airControlMultiplier: 0.4
+  canMove: 1
   rotationSpeed: 10
   groundCheckDistance: 1
   groundLayer:
@@ -524,6 +545,8 @@ MonoBehaviour:
   camTarget: {fileID: 5920002315710832023}
   camOffset: {x: 27, y: 37, z: -27}
   camFollowSmoothTime: -0.05
+  rotationXOffset: -10
+  positionYOffset: -1
   isGrounded: 0
 --- !u!136 &6446158079403429929
 CapsuleCollider:
@@ -562,6 +585,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   maxHealth: 10
   currentHealth: 0
+  currentMask: 0
+  combatActions: []
+  combatActions2: []
+  runActions: 
 --- !u!1 &2829341953584934873
 GameObject:
   m_ObjectHideFlags: 0
