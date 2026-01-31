@@ -41506,7 +41506,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1136099457}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Item Interactable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49208,9 +49208,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1136099457}
     m_Modifications:
+    - target: {fileID: 1053961334919636736, guid: 9199784ab327afa4aa397114b75908af, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2865059216297634503, guid: 9199784ab327afa4aa397114b75908af, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316487840176403496, guid: 9199784ab327afa4aa397114b75908af, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3785600254130820973, guid: 9199784ab327afa4aa397114b75908af, type: 3}
       propertyPath: m_Name
       value: Saw it Interaction Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3785600254130820973, guid: 9199784ab327afa4aa397114b75908af, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3946832430904278984, guid: 9199784ab327afa4aa397114b75908af, type: 3}
       propertyPath: m_Size.x
@@ -49235,6 +49251,18 @@ PrefabInstance:
     - target: {fileID: 3946832430904278984, guid: 9199784ab327afa4aa397114b75908af, type: 3}
       propertyPath: m_Center.z
       value: -0.48115635
+      objectReference: {fileID: 0}
+    - target: {fileID: 5226505818352486126, guid: 9199784ab327afa4aa397114b75908af, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6019980086025817329, guid: 9199784ab327afa4aa397114b75908af, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6390405632892063464, guid: 9199784ab327afa4aa397114b75908af, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7251381950940756980, guid: 9199784ab327afa4aa397114b75908af, type: 3}
       propertyPath: m_LocalPosition.x
@@ -49329,6 +49357,12 @@ MonoBehaviour:
   dialogData:
   - textValue: I saw it
     showDuration: 3
+  OnEnterDialog:
+    m_PersistentCalls:
+      m_Calls: []
+  OnInteractedDialog:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1456885913
 GameObject:
   m_ObjectHideFlags: 0

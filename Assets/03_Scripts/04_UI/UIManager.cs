@@ -1,6 +1,7 @@
 
 using Psalmhaven;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -25,6 +26,10 @@ namespace UI
 
         private List<ChoiceData> activeChoices = new();
         private UnityAction<int> OnRollDiceAction;
+
+        private Coroutine closeCoroutine;
+
+        private bool isRoll = false;
         private void Awake()
         {
             if (instance == null) instance = this;
@@ -38,10 +43,32 @@ namespace UI
             if (status)
             {
                 board.OpenWindow();
+
+                if(closeCoroutine != null)
+                    StopCoroutine(closeCoroutine);
             }
-            else { 
-                board.CloseWindow(); 
+            else {
+                if (isRoll)
+                {
+                    closeCoroutine = StartCoroutine(WaitForCloseBoardDice());
+                }
+                else
+                {
+                    board.CloseWindow();
+                }
             }            
+        }
+
+        private IEnumerator WaitForCloseBoardDice()
+        {
+            while (isRoll)
+            {
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(1f);
+            closeCoroutine = null;
+            board.CloseWindow();
         }
 
         public void SetUpChoice(ChoiceData[] choices, UnityAction<int> OnCompleteRoll)
@@ -75,11 +102,14 @@ namespace UI
 
         public void RollDice(Action<int> OnDiceRolled)
         {
+            isRoll = true;
             board.RollDice(OnFinishedRoll: (number) => {
                 if(OnDiceRolled != null) OnDiceRolled(number);
 
                 choiceTextList[number].RevealChoice(activeChoices[number].choiceValue);
                 OnRollDiceAction?.Invoke(number);
+
+                isRoll = false;
             });
         }
 
