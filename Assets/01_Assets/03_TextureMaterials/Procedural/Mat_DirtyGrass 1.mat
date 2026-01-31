@@ -23,9 +23,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mat_Sand
+  m_Name: Mat_DirtyGrass 1
   m_Shader: {fileID: 4800000, guid: 9286f6b706e20f94d9e9f31e612a2749, type: 3}
-  m_Parent: {fileID: 2100000, guid: 163d1b48e5ac16544806cf696d46d11c, type: 2}
+  m_Parent: {fileID: 2100000, guid: cf8b3dd892e3b9945aed537bf6063c72, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
@@ -51,15 +51,12 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _AmbientOcclusion: 0
-    - _Dirtiness: 1.25
-    - _FloorTileGap: 0.5
-    - _MaterialType: 1
-    - _ParallaxStrength: 0.5
-    - _Smoothness: 0.266
-    - _TriplanarScale: 0.4
+    - _AmbientOcclusion: 0.302
+    - _Brightness: 2
+    - _ParallaxStrength: 0.078
+    - _TriplanarBlendSharpness: 1
     m_Colors:
-    - _BaseColor: {r: 0.6226415, g: 0.57370234, b: 0.3653613, a: 1}
-    - _VariationColor: {r: 1, g: 0.8641787, b: 0.5801887, a: 1}
+    - _BaseColor: {r: 0.49019608, g: 0.4403851, b: 0.13725492, a: 1}
+    - _VariationColor: {r: 0.5803922, g: 0.32941177, b: 0.24313727, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

@@ -51,7 +51,7 @@ Shader "YmneShader/ShellTexturingGenerator"
         
         [Header(Lighting)]
         _AmbientOcclusion ("Ambient Occlusion", Range(0, 1)) = 0.8
-        _Brightness ("Brightness", Range(0.1, 2.0)) = 1.0
+        _Brightness ("Brightness", Range(0.1, 10.0)) = 1.0
         
         [Header(Cutout)]
         [Toggle] _EnableCutout ("Enable Cutout", Float) = 0
