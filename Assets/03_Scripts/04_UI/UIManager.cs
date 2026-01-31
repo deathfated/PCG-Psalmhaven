@@ -1,6 +1,8 @@
 
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace UI
 { 
@@ -11,13 +13,15 @@ namespace UI
         [SerializeField] private DummyChoiceSO dummyChoice;
         private bool isBoardOpened = false;
         [HideInInspector] public static UIManager instance;
+
+        private List<ChoiceData> activeChoices = new();
+        private UnityAction<int> OnRollDiceAction;
         private void Awake()
         {
             if (instance == null) instance = this;
             else Destroy(gameObject);
         }
 
-#if UNITY_EDITOR
         // for debugging purposes
         private void Update()
         {
@@ -31,29 +35,55 @@ namespace UI
                 RollDice();
             }
         }
-#endif
 
         public void OpenBoard(bool status) 
         {
             if (status)
             {
                 board.OpenWindow();
-                foreach (var item in choiceTextList)
-                {
-                    item.ShowChoice();
-                }
             }
             else { 
                 board.CloseWindow(); 
             }            
         }
 
+        public void SetUpChoice(ChoiceData[] choices, UnityAction<int> OnCompleteRoll)
+        {
+            OnRollDiceAction = null;
+            OnRollDiceAction += OnCompleteRoll;
+            activeChoices.Clear();
+            foreach (var choice in choices)
+            {
+                activeChoices.Add(choice);
+            }
+
+            for (int i = 0; i < activeChoices.Count; i++)
+            {
+                if (activeChoices[i].revealChoice)
+                {
+                    choiceTextList[i].ShowChoice();
+                    choiceTextList[i].RevealChoice(activeChoices[i].choiceValue);
+                }
+                else
+                {
+                    choiceTextList[i].ShowChoice();
+                }
+            }
+        }
+
         public void RollDice()
         {
             board.RollDice(OnFinishedRoll: (number) => {
-                choiceTextList[number].RevealChoice(dummyChoice.choices[number].name);
-                dummyChoice.choices[number].Action();
+                choiceTextList[number].RevealChoice(activeChoices[number].choiceValue);
+                OnRollDiceAction?.Invoke(number);
             });
         }
     }
+}
+
+[System.Serializable]
+public class ChoiceData
+{
+    public string choiceValue;
+    public bool revealChoice;
 }

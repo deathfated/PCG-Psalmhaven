@@ -1,4 +1,5 @@
 using System;
+using UI;
 using UnityEngine;
 
 public class ActionItemInteraction : BaseInteraction
@@ -7,9 +8,9 @@ public class ActionItemInteraction : BaseInteraction
     [SerializeField] private CanvasGroup uiPanel;
 
     private Coroutine activeCoroutine;
-    [SerializeField] private ItemInteractEffect[] interactEffect;
     private bool hasInteract;
 
+    public ItemEffectData[] interactEffectData;
     //Dummy 
     protected Character playerCharacter;
     private void Start()
@@ -37,13 +38,14 @@ public class ActionItemInteraction : BaseInteraction
 
     public void OnRollDice(int diceNumber)
     {
-        if (interactEffect[diceNumber] == null)
+        if (interactEffectData[diceNumber] == null)
         {
             CloseInteraction();
         }
         else
         {
-            interactEffect[diceNumber].OnItemInteract(playerCharacter);
+            interactEffectData[diceNumber].interactEffect.ItemInteract(playerCharacter);
+            interactEffectData[diceNumber].hasInteract = true;
         }
     }
 
@@ -76,11 +78,28 @@ public class ActionItemInteraction : BaseInteraction
 
     private void ShowRollDice()
     {
-        Debug.Log("ShowUI Dice");
+        UIManager.instance.OpenBoard(true);
+
+        ChoiceData[] choices = new ChoiceData[6];
+        for (int i = 0; i < interactEffectData.Length; i++)
+        {
+            choices[i] = new ChoiceData();
+            choices[i].choiceValue = interactEffectData[i].interactEffect.effectName;
+            choices[i].revealChoice = interactEffectData[i].hasInteract;
+        }
+
+        UIManager.instance.SetUpChoice(choices, OnRollDice);
     }
 
     private void HideRollDice()
     {
-        Debug.Log("HideUI Dice");
+        UIManager.instance.OpenBoard(false);
     }
+}
+
+[System.Serializable]
+public class ItemEffectData
+{
+    public ItemInteractEffect interactEffect;
+    public bool hasInteract = false;
 }
