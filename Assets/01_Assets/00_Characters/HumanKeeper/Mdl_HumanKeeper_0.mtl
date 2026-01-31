@@ -1,0 +1,4 @@
+#@DL2023 - w:32, h:32
+newmtl x
+map_Kd Mdl_HumanKeeper_0.png
+map_Ke Mdl_HumanKeeper_0_emit.png
