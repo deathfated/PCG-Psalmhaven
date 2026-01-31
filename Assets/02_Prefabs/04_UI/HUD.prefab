@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 354220383012090385}
   - component: {fileID: 5029517652081305846}
   - component: {fileID: 7236582061480367213}
+  - component: {fileID: 696233320522723426}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -33,6 +34,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1124277842155917271}
+  - {fileID: 5615466712879800347}
   - {fileID: 3891356894754395672}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -124,8 +126,122 @@ MonoBehaviour:
   - {fileID: 6847754906328020089}
   - {fileID: 2518052725720317013}
   - {fileID: 3653324720769114676}
+  inventory: {fileID: 7573368301016709395}
   pauseWindow: {fileID: 1404996678021142357}
-  dummyChoice: {fileID: 11400000, guid: 9213d2f8c0bb93445b2888c856c6a2f8, type: 2}
+--- !u!114 &696233320522723426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5163605936142379511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: 322723f245b3c724486c571ad0b91ceb, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 44e832ea-5a7c-4168-a0d2-8f904b3f75fa
+    m_ActionName: 'MC/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7236582061480367213}
+        m_TargetAssemblyTypeName: UI.UIManager, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8940776f-60a3-430b-902e-9e4c2d62a71d
+    m_ActionName: 'UI/Pause[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7236582061480367213}
+        m_TargetAssemblyTypeName: UI.UIManager, Assembly-CSharp
+        m_MethodName: RollDice
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b7b30c38-1e4a-4fd0-865a-80e2db3ae382
+    m_ActionName: 'UI/RollDice[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7236582061480367213}
+        m_TargetAssemblyTypeName: UI.UIManager, Assembly-CSharp
+        m_MethodName: SetHealth
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 50
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9fa34dc9-e7d5-401c-953a-a249da6058bd
+    m_ActionName: 'Debug/SetHealth[/Keyboard/1]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7236582061480367213}
+        m_TargetAssemblyTypeName: UI.UIManager, Assembly-CSharp
+        m_MethodName: SetGold
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 100
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9aabfa9e-763e-420d-b529-39325334cd4c
+    m_ActionName: 'Debug/SetGold[/Keyboard/2]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7236582061480367213}
+        m_TargetAssemblyTypeName: UI.UIManager, Assembly-CSharp
+        m_MethodName: OpenBoard
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+    m_ActionId: af437696-b6cc-4f4a-86e0-12efc6045114
+    m_ActionName: 'Debug/Board[/Keyboard/3]'
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: UI
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1001 &1247403501560949469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -593,6 +709,127 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6100800d2478a846aecfa7e40cf86a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.ChoiceText
+--- !u!1001 &2961682667696990424
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2888455523836943128}
+    m_Modifications:
+    - target: {fileID: 3081369066327384180, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+      propertyPath: m_Name
+      value: Inventory box
+      objectReference: {fileID: 0}
+    - target: {fileID: 4413057145673281559, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274482767419246787, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274482767419246787, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274482767419246787, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274482767419246787, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274482767419246787, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274482767419246787, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274482767419246787, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 120.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274482767419246787, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 331.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274482767419246787, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274482767419246787, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274482767419246787, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274482767419246787, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274482767419246787, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274482767419246787, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274482767419246787, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274482767419246787, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 60.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274482767419246787, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000015258789
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274482767419246787, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274482767419246787, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274482767419246787, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673702695488165594, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+      propertyPath: initialAmount
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+--- !u!224 &5615466712879800347 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7274482767419246787, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+  m_PrefabInstance: {fileID: 2961682667696990424}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7573368301016709395 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4611687023295549899, guid: 71907790787ac354baf3bad62e38c6e4, type: 3}
+  m_PrefabInstance: {fileID: 2961682667696990424}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0421f1aed64d79e4db1ebe4dc1768477, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.Inventory
 --- !u!1001 &6014105825401767183
 PrefabInstance:
   m_ObjectHideFlags: 0

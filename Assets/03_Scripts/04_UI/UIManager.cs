@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 namespace UI
 { 
     public class UIManager : MonoBehaviour
     {
+        //[SerializeField] private InputAction playerInput;
         [SerializeField] private DiceBoard board;
         [SerializeField] private List<ChoiceText> choiceTextList;
+        [SerializeField] private Inventory inventory;
         [SerializeField] private PauseWindow pauseWindow;
-        [SerializeField] private DummyChoiceSO dummyChoice;
         private bool isBoardOpened = false;
         private bool isPaused = false;
         [HideInInspector] public static UIManager instance;
@@ -22,25 +24,6 @@ namespace UI
         {
             if (instance == null) instance = this;
             else Destroy(gameObject);
-        }
-
-        // for debugging purposes
-        private void Update()
-        {
-            /*if (Input.GetKeyDown(KeyCode.R))
-            {
-                isBoardOpened = !isBoardOpened;
-                OpenBoard(isBoardOpened);
-            }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                RollDice();
-            }
-            if(Input.GetKeyDown(KeyCode.Escape))
-            {
-                isPaused = !isPaused;
-                Pause(isPaused);
-            }*/
         }
 
         public void OpenBoard(bool status) 
@@ -78,20 +61,34 @@ namespace UI
             }
         }
 
+        public void RollDice(InputAction.CallbackContext context)
+        {
+            RollDice(null);
+        }
+
         public void RollDice(Action<int> OnDiceRolled)
         {
             board.RollDice(OnFinishedRoll: (number) => {
-                OnDiceRolled(number);
+                if(OnDiceRolled != null) OnDiceRolled(number);
 
                 choiceTextList[number].RevealChoice(activeChoices[number].choiceValue);
                 OnRollDiceAction?.Invoke(number);
             });
         }
 
-        public void Pause(bool status)
+        public void SetHealth(float amount)
         {
-            if (status) pauseWindow.OpenWindow();
-            else pauseWindow.CloseWindow();
+            inventory.SetHealth(amount);
+        }
+        public void SetGold(float amount)
+        {
+            inventory.SetGold(amount);
+        }
+
+        public void Pause(InputAction.CallbackContext context)
+        {
+            if (pauseWindow.isPaused) pauseWindow.CloseWindow();
+            else pauseWindow.OpenWindow();
         }
     }
 }
