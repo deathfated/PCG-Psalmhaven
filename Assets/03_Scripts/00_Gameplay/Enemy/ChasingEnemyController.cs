@@ -6,7 +6,7 @@ public class ChasingEnemyController : BaseEnemyController
     [SerializeField] private float _chaseRange = 8f;
     [SerializeField] private float _maxChasingRange = 15f;
 
-    public float currentDistance;
+    private float currentDistance;
 
     public override void HasTriggerEnterEnemy()
     {
@@ -23,7 +23,7 @@ public class ChasingEnemyController : BaseEnemyController
         if (currentState == EnemyState.Interacting)
             return;
 
-        currentDistance = Vector3.Distance(transform.position, player.position);
+        currentDistance = Vector3.Distance(transform.position, playerTransform.position);
 
         if (currentDistance <= _chaseRange && currentState != EnemyState.Chasing)
         {
