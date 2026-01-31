@@ -69,12 +69,20 @@ Material:
     - _AmbientOcclusion: 0
     - _Brightness: 1
     - _BumpScale: 1
+    - _ClothDepth: 0.1
+    - _ClothFuzziness: 0.3
+    - _ClothThreadWidth: 0.7
+    - _ClothWeaveScale: 30
     - _ColorVariationScale: 3
     - _Cutoff: 0.5
-    - _Density: 0.322
+    - _CutoutThreshold: 0.1
+    - _Density: 1.05
     - _DetailNormalMapScale: 1
     - _Dirtiness: 1.04
     - _DstBlend: 0
+    - _EnableCutout: 0
+    - _FloorGroutWidth: 0.05
+    - _FloorTileGap: 0.3
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -96,12 +104,17 @@ Material:
     - _TriplanarBlendSharpness: 1
     - _TriplanarScale: 1
     - _UVSec: 0
+    - _WoodGapDepth: 0.25
+    - _WoodGapWidth: 0.02
+    - _WoodGrainScale: 20
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 0.19999993, g: 0.5, b: 0.09999994, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _FloorTileCount: {r: 4, g: 4, b: 0, a: 0}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _VariationColor: {r: 0.6075471, g: 0.6075471, b: 0.6075471, a: 1}
+    - _WoodPlankCount: {r: 2, g: 8, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

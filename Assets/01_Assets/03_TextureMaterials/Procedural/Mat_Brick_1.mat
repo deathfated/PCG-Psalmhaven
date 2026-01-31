@@ -55,7 +55,8 @@ Material:
     - _Brightness: 1
     - _ColorVariationScale: 3
     - _Density: 1
-    - _Dirtiness: 3
+    - _Dirtiness: 2
+    - _FloorTileGap: 0.5
     - _MaterialType: 3
     - _ParallaxSteps: 8
     - _ParallaxStrength: 0.1
@@ -64,7 +65,7 @@ Material:
     - _Smoothness: 0
     - _SmoothnessVariation: 0
     - _TriplanarBlendSharpness: 1
-    - _TriplanarScale: 1.25
+    - _TriplanarScale: 0.5
     m_Colors:
     - _BaseColor: {r: 0.5924529, g: 0.5924529, b: 0.5924529, a: 1}
     - _VariationColor: {r: 0.554717, g: 0.554717, b: 0.554717, a: 1}
