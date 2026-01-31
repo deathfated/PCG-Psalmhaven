@@ -7,9 +7,11 @@ namespace UI
     public class UIManager : MonoBehaviour
     {
         [SerializeField] private DiceBoard board;
-        [SerializeField] private List<ChoiceText> choiceTextList; 
+        [SerializeField] private List<ChoiceText> choiceTextList;
+        [SerializeField] private PauseWindow pauseWindow;
         [SerializeField] private DummyChoiceSO dummyChoice;
         private bool isBoardOpened = false;
+        private bool isPaused = false;
         [HideInInspector] public static UIManager instance;
         private void Awake()
         {
@@ -29,6 +31,11 @@ namespace UI
             if (Input.GetKeyDown(KeyCode.E))
             {
                 RollDice();
+            }
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                isPaused = !isPaused;
+                Pause(isPaused);
             }
         }
 #endif
@@ -54,6 +61,12 @@ namespace UI
                 choiceTextList[number].RevealChoice(dummyChoice.choices[number].name);
                 dummyChoice.choices[number].Action();
             });
+        }
+
+        public void Pause(bool status)
+        {
+            if (status) pauseWindow.OpenWindow();
+            else pauseWindow.CloseWindow();
         }
     }
 }
