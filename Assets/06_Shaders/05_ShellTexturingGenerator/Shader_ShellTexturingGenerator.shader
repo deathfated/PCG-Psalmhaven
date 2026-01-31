@@ -3,7 +3,24 @@ Shader "YmneShader/ShellTexturingGenerator"
     Properties
     {
         [Header(General Settings)]
-        [Enum(Dirt, 0, Sand, 1, Rock, 2, Brick, 3)] _MaterialType ("Material Type", Int) = 1
+        [Enum(Dirt, 0, Sand, 1, Rock, 2, Brick, 3, Floor, 4, Wood, 5, Cloth, 6)] _MaterialType ("Material Type", Int) = 1
+        
+        [Header(Floor Settings)]
+        _FloorTileCount ("Floor Tile Count", Vector) = (4, 4, 0, 0)
+        _FloorGroutWidth ("Floor Grout Width", Range(0.01, 0.2)) = 0.05
+        _FloorTileGap ("Floor Tile Gap Depth", Range(0.0, 0.5)) = 0.3
+        
+        [Header(Wood Settings)]
+        _WoodPlankCount ("Wood Plank Count", Vector) = (2, 8, 0, 0)
+        _WoodGapWidth ("Wood Gap Width", Range(0.005, 0.1)) = 0.02
+        _WoodGapDepth ("Wood Gap Depth", Range(0.0, 0.5)) = 0.25
+        _WoodGrainScale ("Wood Grain Scale", Range(1, 50)) = 20
+        
+        [Header(Cloth Settings)]
+        _ClothWeaveScale ("Cloth Weave Scale", Range(5, 100)) = 30
+        _ClothThreadWidth ("Thread Width", Range(0.3, 0.9)) = 0.7
+        _ClothDepth ("Weave Depth", Range(0.0, 0.3)) = 0.1
+        _ClothFuzziness ("Fuzziness", Range(0, 1)) = 0.3
         
         [Header(Colors)]
         _BaseColor ("Base Color", Color) = (0.76, 0.65, 0.38, 1)
@@ -16,7 +33,7 @@ Shader "YmneShader/ShellTexturingGenerator"
         _SpecularColor ("Specular Color", Color) = (0.2, 0.2, 0.2, 1)
         
         [Header(Geometry)]
-        _Density ("Density", Range(0.01, 1.0)) = 0.5
+        _Density ("Density", Range(0.01, 10.0)) = 0.5
         _ShellThickness ("Shell Thickness", Range(0, 1)) = 0.5
         
         [Header(Triplanar Settings)]
@@ -30,19 +47,23 @@ Shader "YmneShader/ShellTexturingGenerator"
         
         [Header(Stylization)]
         [IntRange] _PixelTextureResolution ("Pixel Texture Resolution", Range(32, 512)) = 128
-        _Dirtiness ("Dirtiness", Range(0, 1)) = 0.3
+        _Dirtiness ("Dirtiness", Range(0, 10)) = 0.3
         
         [Header(Lighting)]
         _AmbientOcclusion ("Ambient Occlusion", Range(0, 1)) = 0.8
         _Brightness ("Brightness", Range(0.1, 2.0)) = 1.0
+        
+        [Header(Cutout)]
+        [Toggle] _EnableCutout ("Enable Cutout", Float) = 0
+        _CutoutThreshold ("Cutout Threshold", Range(0.01, 0.5)) = 0.1
     }
     
     SubShader
     {
         Tags 
         { 
-            "RenderType" = "Opaque"
-            "Queue" = "Geometry"
+            "RenderType" = "TransparentCutout"
+            "Queue" = "AlphaTest"
         }
         
         CGINCLUDE
@@ -73,8 +94,25 @@ Shader "YmneShader/ShellTexturingGenerator"
         int _PixelTextureResolution;
         float _Dirtiness;
         
+        float4 _FloorTileCount;
+        float _FloorGroutWidth;
+        float _FloorTileGap;
+        
+        float4 _WoodPlankCount;
+        float _WoodGapWidth;
+        float _WoodGapDepth;
+        float _WoodGrainScale;
+        
+        float _ClothWeaveScale;
+        float _ClothThreadWidth;
+        float _ClothDepth;
+        float _ClothFuzziness;
+        
         float _AmbientOcclusion;
         float _Brightness;
+        
+        float _EnableCutout;
+        float _CutoutThreshold;
         
         // --- NOISE FUNCTIONS ---
         
@@ -258,6 +296,169 @@ Shader "YmneShader/ShellTexturingGenerator"
                 if (heightMask < 0.5 && height < 0.2)
                 {
                     density = 1.0; // Show deep mortar/hole bottom
+                }
+            }
+            else if (type == 4) // Floor
+            {
+                float2 scaledUV = uv * _FloorTileCount.xy;
+                float2 tileID = floor(scaledUV);
+                float2 tileUV = frac(scaledUV);
+                
+                float halfGrout = _FloorGroutWidth * 0.5;
+                float2 edgeDistXY = min(tileUV, 1.0 - tileUV);
+                float edgeDist = min(edgeDistXY.x, edgeDistXY.y);
+                
+                // Density-based tile visibility (like brick)
+                float tileMaxHeight = Hash21(tileID * 1.234);
+                float densityThreshold = 1.0 - _Density;
+                tileMaxHeight = tileMaxHeight > densityThreshold ? 
+                    (tileMaxHeight - densityThreshold) / (1.0 - densityThreshold) : 0.0;
+                float heightMask = step(height, tileMaxHeight);
+                
+                float tileRandom = Hash21(tileID * 1.37);
+                float tileBaseHeight = 0.7 + tileRandom * 0.3;
+                
+                float3 wearOffset = Hash23(tileID * 2.71);
+                float wearNoise = FBM(uv * 8.0 + wearOffset.xy * 10.0, 2);
+                float wear = wearNoise * 0.15;
+                
+                float surfaceNoise = Noise2D(uv * 32.0) * 0.05;
+                
+                float cornerDist = length(edgeDistXY);
+                float edgeWear = (1.0 - smoothstep(0.0, 0.2, cornerDist)) * 0.1;
+                
+                float crackPattern = Voronoi(uv + tileID * 0.5, 0.0, 6.0);
+                float cracks = (1.0 - smoothstep(0.0, 0.08, crackPattern)) * 0.15;
+                
+                float tileHeight = tileBaseHeight - wear - surfaceNoise - edgeWear - cracks;
+                float groutHeight = _FloorTileGap;
+                
+                float groutBlend = smoothstep(0.0, halfGrout, edgeDist);
+                float finalHeight = lerp(groutHeight, tileHeight, groutBlend);
+                
+                density = step(height, finalHeight) * heightMask;
+                
+                // Show grout in missing tile areas
+                if (heightMask < 0.5 && height < 0.2)
+                {
+                    density = 1.0;
+                }
+            }
+            else if (type == 5) // Wood
+            {
+                float2 plankSize = float2(1.0 / _WoodPlankCount.x, 1.0 / _WoodPlankCount.y);
+                
+                // Offset every other row
+                float row = floor(uv.y / plankSize.y);
+                float rowOffset = fmod(row, 2.0) * plankSize.x * 0.5;
+                float2 offsetUV = float2(uv.x + rowOffset, uv.y);
+                
+                float2 plankID = floor(offsetUV / plankSize);
+                float2 plankUV = frac(offsetUV / plankSize);
+                
+                // Gap detection
+                float halfGap = _WoodGapWidth * 0.5 / plankSize.x;
+                float halfGapY = _WoodGapWidth * 0.5 / plankSize.y;
+                float2 edgeDistXY = min(plankUV, 1.0 - plankUV);
+                float isGapX = step(edgeDistXY.x, halfGap);
+                float isGapY = step(edgeDistXY.y, halfGapY);
+                float isGap = saturate(isGapX + isGapY);
+                
+                // Density-based plank visibility
+                float plankMaxHeight = Hash21(plankID * 1.234);
+                float densityThreshold = 1.0 - _Density;
+                plankMaxHeight = plankMaxHeight > densityThreshold ? 
+                    (plankMaxHeight - densityThreshold) / (1.0 - densityThreshold) : 0.0;
+                float heightMask = step(height, plankMaxHeight);
+                
+                // Per-plank variation
+                float plankRandom = Hash21(plankID * 2.57);
+                float plankBaseHeight = 0.75 + plankRandom * 0.25;
+                
+                // Wood grain (elongated noise along plank)
+                float grainUV = plankUV.y * _WoodGrainScale + plankID.x * 3.7;
+                float grain = Noise2D(float2(grainUV, plankID.y * 0.5)) * 0.08;
+                
+                // Surface wear
+                float3 wearOffset = Hash23(plankID * 3.14);
+                float wear = FBM(uv * 6.0 + wearOffset.xy * 10.0, 2) * 0.1;
+                
+                // Edge wear on planks
+                float edgeDist = min(edgeDistXY.x, edgeDistXY.y);
+                float edgeWear = (1.0 - smoothstep(0.0, 0.15, edgeDist)) * 0.08;
+                
+                float plankHeight = plankBaseHeight - grain - wear - edgeWear;
+                float gapHeight = _WoodGapDepth;
+                
+                float gapBlend = smoothstep(0.0, halfGap * 0.5, edgeDist);
+                float finalHeight = lerp(gapHeight, plankHeight, gapBlend);
+                
+                density = step(height, finalHeight) * heightMask;
+                
+                // Show gap floor in missing plank areas
+                if (heightMask < 0.5 && height < 0.15)
+                {
+                    density = 1.0;
+                }
+            }
+            else if (type == 6) // Cloth
+            {
+                float2 weaveUV = uv * _ClothWeaveScale;
+                float2 weaveCell = floor(weaveUV);
+                float2 weaveLocal = frac(weaveUV);
+                
+                // Determine if horizontal or vertical thread is on top (checkerboard weave)
+                float checker = fmod(weaveCell.x + weaveCell.y, 2.0);
+                
+                // Thread coverage
+                float halfThread = _ClothThreadWidth * 0.5;
+                float threadH = smoothstep(0.5 - halfThread, 0.5 - halfThread + 0.1, weaveLocal.y) * 
+                                 smoothstep(0.5 + halfThread, 0.5 + halfThread - 0.1, weaveLocal.y);
+                float threadV = smoothstep(0.5 - halfThread, 0.5 - halfThread + 0.1, weaveLocal.x) * 
+                                 smoothstep(0.5 + halfThread, 0.5 + halfThread - 0.1, weaveLocal.x);
+                
+                // Weave pattern - one thread over, one under
+                float threadOnTop = checker > 0.5 ? threadH : threadV;
+                float threadBelow = checker > 0.5 ? threadV : threadH;
+                
+                // Height for threads
+                float topHeight = 0.9 - Noise2D(weaveUV * 0.5) * 0.05;
+                float bottomHeight = topHeight - _ClothDepth;
+                
+                // Fuzziness / fiber noise
+                float fuzz = (Noise2D(uv * _ClothWeaveScale * 4.0) - 0.5) * _ClothFuzziness * 0.15;
+                
+                // Combine threads with height
+                float surfaceHeight = 0.0;
+                if (threadOnTop > 0.5)
+                {
+                    surfaceHeight = topHeight + fuzz;
+                }
+                else if (threadBelow > 0.5)
+                {
+                    surfaceHeight = bottomHeight + fuzz;
+                }
+                else
+                {
+                    // Gap between threads
+                    surfaceHeight = bottomHeight - 0.1;
+                }
+                
+                // Density-based wear/holes
+                float wearNoise = FBM(uv * 3.0, 3);
+                float densityThreshold = 1.0 - _Density;
+                float wearMask = step(densityThreshold, wearNoise);
+                
+                // Apply thread fraying at wear edges
+                float frayEdge = smoothstep(densityThreshold, densityThreshold + 0.15, wearNoise);
+                surfaceHeight *= frayEdge;
+                
+                density = step(height, surfaceHeight) * wearMask;
+                
+                // Show backing in holes
+                if (wearMask < 0.5 && height < 0.1)
+                {
+                    density = 1.0;
                 }
             }
             
@@ -450,6 +651,12 @@ Shader "YmneShader/ShellTexturingGenerator"
                 float rndSpec;
                 float mask = ParallaxShellSample(i.positionWS, normalize(i.normalWS), matColor, height, rndSpec);
                 
+                // Cutout - discard pixels in holes
+                if (_EnableCutout > 0.5)
+                {
+                    clip(height - _CutoutThreshold);
+                }
+                
                 float3 normalWS = normalize(i.normalWS);
                 
                 // --- PBR LIGHTING CALCULATION ---
@@ -545,6 +752,12 @@ Shader "YmneShader/ShellTexturingGenerator"
                 float height;
                 float rndSpec;
                 float mask = ParallaxShellSample(i.positionWS, normalize(i.normalWS), matColor, height, rndSpec);
+                
+                // Cutout - discard pixels in holes
+                if (_EnableCutout > 0.5)
+                {
+                    clip(height - _CutoutThreshold);
+                }
                 
                 float3 normalWS = normalize(i.normalWS);
                 

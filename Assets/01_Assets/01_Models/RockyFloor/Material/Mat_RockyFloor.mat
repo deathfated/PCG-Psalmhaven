@@ -73,7 +73,7 @@ Material:
     - _Cutoff: 0.5
     - _Density: 0.322
     - _DetailNormalMapScale: 1
-    - _Dirtiness: 1
+    - _Dirtiness: 1.04
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -84,8 +84,8 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _ParallaxRefinement: 1
-    - _ParallaxSteps: 39
-    - _ParallaxStrength: 0.1
+    - _ParallaxSteps: 8
+    - _ParallaxStrength: 0.25
     - _PixelTextureResolution: 32
     - _ShellThickness: 1
     - _Smoothness: 0
