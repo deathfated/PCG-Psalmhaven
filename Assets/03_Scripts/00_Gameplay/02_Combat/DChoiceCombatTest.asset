@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b4f5489bcba57409e3ac09eb113737, type: 3}
   m_Name: DChoiceCombatTest
   m_EditorClassIdentifier: Assembly-CSharp::DummyChoiceSO
-  choices: []
+  choices:
+  - name: Countered!
+  - name: Countered!
+  - name: Countered!
+  - name: Punch Enemy!
+  - name: Punch Enemy!
+  - name: Critical Hit!

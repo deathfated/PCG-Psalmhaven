@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.GraphicsBuffer;
 
 namespace Psalmhaven
 {
@@ -9,6 +10,7 @@ namespace Psalmhaven
         [Header("Movement")]
         public float moveSpeed = 6f;
         public float airControlMultiplier = 0.4f;
+        public bool canMove = true;
 
         [Header("Rotation")]
         public float rotationSpeed = 10f;
@@ -23,9 +25,10 @@ namespace Psalmhaven
         public Vector3 camOffset = new Vector3(8.7f, 13f, -9f);
         public float camFollowSmoothTime = -0.05f;
         private Transform cameraTransform;
+        public float rotationXOffset = -10f;
+        public float positionYOffset = -1f;  
 
         private Vector3 velocity;
-
         private Rigidbody rb;
         private Vector2 moveInput;
         private Animator _animator;
@@ -43,10 +46,7 @@ namespace Psalmhaven
 
         #region CameraLogic
 
-        //void LateUpdate()
-        //{
-
-        //}
+        
 
 
         #endregion
@@ -89,6 +89,7 @@ namespace Psalmhaven
 
         void MovePlayer()
         {
+            if (!canMove) moveInput = new Vector2(0,0);
 
             // Normalize input to prevent diagonal speed boost
             Vector2 normalizedInput = Vector2.ClampMagnitude(moveInput, 1f);
@@ -139,6 +140,25 @@ namespace Psalmhaven
                 rb.AddForce(desiredMove * moveSpeed * airControlMultiplier, ForceMode.Acceleration);
                 _animator.SetBool("IsRunning", false);
             }
+        }
+
+        public void FaceObject(Transform target, float turnSpeed = 10f)
+        {
+            if (target == null)
+                return;
+
+            Vector3 direction = target.position - transform.position;
+            direction.y = 0f;
+
+            if (direction.sqrMagnitude < 0.001f)
+                return;
+
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRotation,
+                Time.deltaTime * turnSpeed
+        );
         }
     }
 }

@@ -11,11 +11,14 @@ namespace Psalmhaven
         [SerializeField] Player player;
         [SerializeField] Enemy enemy;
 
+        private PlayerController playerController;
+
         [SerializeField] GameObject optionsPanel;
         [SerializeField] GameObject gameoverPanel;
         //private DiceRoller diceRoller;
         [SerializeField] GameObject hUD;
-        private int resultRoll = 1;
+        [SerializeField] Canvas canvas;
+        private int resultRoll = -1;
 
         [SerializeField] float delayRoll;
         private Button[] buttons;
@@ -42,25 +45,33 @@ namespace Psalmhaven
         {
             buttons = optionsPanel.GetComponentsInChildren<Button>();
             //diceRoller = UIManager.Instance.GetComponentInChildren<DiceRoller>();
+            playerController = player.GetComponent<PlayerController>();
         }
 
         public void StartCombat()
         {
+            hUD.gameObject.SetActive(true);
+            player.GetComponent<PlayerController>().canMove = false;
+            player.GetComponent<PlayerController>().FaceObject(enemy.transform);
+            canvas.gameObject.SetActive(true);
+        }
 
+        public void EndCombat()
+        {
+            hUD.gameObject.SetActive(false);
+            player.GetComponent<PlayerController>().canMove = true;
+            canvas.gameObject.SetActive(false);
         }
 
         public void StartActionAttack()
         {
-            //int resultRoll = diceRoller.RollDice();
-            //delayRoll = diceRoller.DiceAnimDelay;
-            //diceRoller.AnimateRollDice(resultRoll);
+
             UIManager.instance.RollDice(number =>
             {
                 resultRoll = number;
                 ActionAttack(resultRoll);
             });
-            //StartCoroutine("ActionAttack", resultRoll);
-            //Debug.Log("rando " + resultRoll);
+            Debug.Log("rando ");
         }
 
         private void ActionAttack(int resultRoll)
@@ -108,7 +119,6 @@ namespace Psalmhaven
         {
             Player.OnPlayerDied += ShowGameOver;
 
-            //UIManager.instance.OnDiceRolled += ActionAttack;
 
         }
 
@@ -116,7 +126,6 @@ namespace Psalmhaven
         {
             Player.OnPlayerDied -= ShowGameOver;
 
-            //UIManager.instance.OnDiceRolled -= ActionAttack;
 
         }
 
