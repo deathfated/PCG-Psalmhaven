@@ -46,12 +46,12 @@ Shader "YmneShader/ShellTexturingGenerator"
         [IntRange] _ParallaxRefinement ("Refinement Steps", Range(1, 8)) = 4
         
         [Header(Stylization)]
-        [IntRange] _PixelTextureResolution ("Pixel Texture Resolution", Range(32, 512)) = 128
+        [IntRange] _PixelTextureResolution ("Pixel Texture Resolution", Range(4, 512)) = 128
         _Dirtiness ("Dirtiness", Range(0, 10)) = 0.3
         
         [Header(Lighting)]
         _AmbientOcclusion ("Ambient Occlusion", Range(0, 1)) = 0.8
-        _Brightness ("Brightness", Range(0.1, 2.0)) = 1.0
+        _Brightness ("Brightness", Range(0.1, 10.0)) = 1.0
         
         [Header(Cutout)]
         [Toggle] _EnableCutout ("Enable Cutout", Float) = 0
