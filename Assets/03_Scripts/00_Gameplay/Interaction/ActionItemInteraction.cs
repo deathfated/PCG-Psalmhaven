@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using UI;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ActionItemInteraction : BaseInteraction
 {
@@ -16,6 +18,10 @@ public class ActionItemInteraction : BaseInteraction
     public ItemEffectData[] interactEffectData;
     //Dummy 
     protected Character playerCharacter;
+
+    public UnityEvent UnityEventOnPoint;
+
+    public int[] OnPointEvent;
 
     private void Start()
     {
@@ -80,11 +86,34 @@ public class ActionItemInteraction : BaseInteraction
         }
 
         SaveRuntimeState();
+
+        if (OnPointEvent.Length > 0)
+        {
+            OnOnPointDice(diceNumber);
+        }
     }
 
     public void CloseInteraction()
     {
         hasInteract = true;
+    }
+
+    public void OnOnPointDice(int dice)
+    {
+        for(int i = 0; i < OnPointEvent.Length; i++)
+        {
+            int check = OnPointEvent[i];
+            if(dice == check)
+            {
+                StartCoroutine(DelayEventOnPoint());
+            }
+        }
+    }
+
+    private IEnumerator DelayEventOnPoint()
+    {
+        yield return new WaitForSeconds(2f);
+        ShowPanel(false);
     }
 
     public override void TriggerExit(Collider other)
