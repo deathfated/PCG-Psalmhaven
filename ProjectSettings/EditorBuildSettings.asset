@@ -4,7 +4,16 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/05_Scenes/01_ValleyOfDeath/Map_VoD_0.unity
+    guid: f5c39ff62e10392418d370f3972ccfb7
+  - enabled: 1
+    path: Assets/05_Scenes/01_ValleyOfDeath/Map_VoD_1.unity
+    guid: a22ad8ed780775341ad57b14e699e129
+  - enabled: 1
+    path: Assets/05_Scenes/01_ValleyOfDeath/Map_VoD_2.unity
+    guid: df014a6819b647941af91b54845a7cbc
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
   m_UseUCBPForAssetBundles: 0

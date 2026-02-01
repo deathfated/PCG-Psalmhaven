@@ -8,16 +8,16 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Mat_Water
-  m_Shader: {fileID: 4800000, guid: cc9a79dabd91a62499bf392b03ffe7b7, type: 3}
-  m_Parent: {fileID: 0}
+  m_Shader: {fileID: 4800000, guid: 9286f6b706e20f94d9e9f31e612a2749, type: 3}
+  m_Parent: {fileID: 2100000, guid: c9e052e6841b86941b9bf65debb47f6c, type: 2}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
+  m_ValidKeywords: []
+  m_InvalidKeywords:
   - _CAUSTICS_ON
   - _DISABLE_TRANSPARENCY
   - _FOAM_ON
   - _RECEIVE_SHADOWS_ON
   - _SSR_ON
-  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -27,117 +27,24 @@ Material:
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs:
-    - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+    m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _BumpScale: 1
-    - _CausticsChromAb: 0.5
-    - _CausticsContrast1: 4
-    - _CausticsContrast2: 4
-    - _CausticsIntensity1: 1.5
-    - _CausticsIntensity2: 0.8
-    - _CausticsScale1: 2
-    - _CausticsScale2: 4
-    - _CausticsSpeed1: 0.5
-    - _CausticsSpeed2: 0.8
-    - _CausticsWarpScale1: 0.5
-    - _CausticsWarpScale2: 1
-    - _CausticsWarpStrength1: 0.1
-    - _CausticsWarpStrength2: 0.1
-    - _CrestThreshold: 0.65
-    - _Cutoff: 0.5
-    - _DepthFade: 5
-    - _DetailNormalMapScale: 1
-    - _DisableTransparency: 1
-    - _DstBlend: 0
-    - _EnableCaustics: 1
-    - _EnableFoam: 1
-    - _EnableSSR: 1
-    - _FoamIntensity: 1
-    - _FoamThreshold: 1
-    - _FresnelIntensity: 0
-    - _FresnelPower: 0.5
-    - _GlossMapScale: 1
+    - _AmbientOcclusion: 0.8
+    - _Brightness: 1
+    - _Density: 0.5
+    - _Dirtiness: 0.3
     - _Glossiness: 0.5
-    - _GlossyReflections: 1
-    - _Metallic: 0
-    - _Mode: 0
-    - _OcclusionStrength: 1
-    - _Opacity: 0.85
-    - _OpacityIntensity: 1
-    - _Parallax: 0.02
-    - _SSRBlur: 0.005
-    - _SSRFadeDistance: 50
-    - _SSRIntensity: 0.5
-    - _SSRSamples: 12
-    - _SSRStepSize: 1
-    - _ShadowSoftness: 0.3
-    - _SmoothnessTextureChannel: 0
-    - _SparkleBloom: 5
-    - _SparkleDensity: 0.5
-    - _SparkleIntensity: 0
-    - _SparkleScale: 15
-    - _SparkleSpeed: 1
-    - _SparkleThreshold: 0.5
-    - _SpecularHighlights: 1
-    - _SpecularIntensity: 1.5
-    - _SpecularSize: 2.72
-    - _SpecularSmoothness: 0.1
-    - _SrcBlend: 1
-    - _ToonSteps: 4
-    - _UVSec: 0
-    - _WaterHeightScale: 1
-    - _WaterTiling: 1
-    - _WaveFrequency: 1
-    - _WaveHeight: 0.3
-    - _WaveSpeed: 1
-    - _ZWrite: 1
-    - _receiveDepthShadows: 1
+    - _MaterialType: 1
+    - _ParallaxSteps: 16
+    - _ParallaxStrength: 0.1
+    - _Smoothness: 0.2
+    - _SmoothnessVariation: 0.1
+    - _TriplanarScale: 0.5
+    - _WoodGrainScale: 20
     m_Colors:
+    - _BaseColor: {r: 0.76, g: 0.65, b: 0.37999994, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DeepColor: {r: 0, g: 0.06465965, b: 0.23018861, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
-    - _FresnelColor: {r: 0.6, g: 0.9, b: 1, a: 1}
-    - _ShadowColor: {r: 0.09999997, g: 0.19999996, b: 0.34999996, a: 1}
-    - _ShallowColor: {r: 0.19999996, g: 0.7, b: 0.8, a: 0.9}
-    - _SparkleColor: {r: 1, g: 1, b: 0.9, a: 1}
-    - _WaveDirection: {r: 1, g: 0, b: 0, a: 0}
+    - _VariationColor: {r: 0.6, g: 0.5, b: 0.29999998, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
