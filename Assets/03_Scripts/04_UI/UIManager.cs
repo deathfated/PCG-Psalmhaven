@@ -160,6 +160,7 @@ namespace UI
 
         public IEnumerator CloseMainMenu(Action OnMenuClosed, UnityAction<int> RollDiceAction)
         {
+            mainMenu.EnableInput(false);
             yield return new WaitForSeconds(0.8f);
             OnMenuClosed += () => inventory.gameObject.SetActive(true);
             mainMenu.OnMenuClosed = OnMenuClosed;

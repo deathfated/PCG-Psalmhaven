@@ -52,5 +52,10 @@ namespace UI
                         OnMenuClosed?.Invoke();
                      });
         }
+
+        public void EnableInput(bool status) 
+        {
+            input.enabled = status;
+        }
     }
 }
