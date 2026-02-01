@@ -1,4 +1,5 @@
 
+using DG.Tweening;
 using Psalmhaven;
 using System;
 using System.Collections;
@@ -122,17 +123,34 @@ namespace UI
             inventory.SetGold(amount);
         }
 
-        public void StartMainMenu(UnityAction<int> RollDiceAction)
+        public void StartMainMenu(Action OnMenuOpened, UnityAction<int> RollDiceAction)
         {
+            inventory.gameObject.SetActive(false);
+            OnMenuOpened += () => board.OpenWindow();
+            mainMenu.OnMenuOpened = OnMenuOpened;
             mainMenu.OpenWindow();
-            board.OpenWindow();
-            OnRollDiceAction += RollDiceAction;
+
+            ChoiceData playChoice = new ChoiceData();
+            playChoice.choiceValue = "Play";
+            playChoice.revealChoice = false;
+            List<ChoiceData> choices = new List<ChoiceData>();
+
+            for (int i = 0; i < 6; i++)
+            {
+                choices.Add(playChoice);
+            }
+
+            SetUpChoice(choices.ToArray(), RollDiceAction);
         }
 
-        public void CloseMainMenu()
+        public IEnumerator CloseMainMenu(Action OnMenuClosed, UnityAction<int> RollDiceAction)
         {
+            yield return new WaitForSeconds(0.8f);
+            OnMenuClosed += () => inventory.gameObject.SetActive(true);
+            mainMenu.OnMenuClosed = OnMenuClosed;
             mainMenu.CloseWindow();
             board.CloseWindow();
+            OnRollDiceAction -= RollDiceAction;
         }
 
         public void Pause(InputAction.CallbackContext context)

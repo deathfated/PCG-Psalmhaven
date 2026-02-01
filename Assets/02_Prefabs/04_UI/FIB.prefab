@@ -3724,6 +3724,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UI.DiceBoard
   openPosY: 87.8
   dice: {fileID: 1929326695056873152}
+  rectTransform: {fileID: 2221847319644841226}
 --- !u!1 &8534223490226002635
 GameObject:
   m_ObjectHideFlags: 0
