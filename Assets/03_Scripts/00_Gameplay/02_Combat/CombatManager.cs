@@ -61,6 +61,7 @@ namespace Psalmhaven
 
             //player face enemy, TODO: enemy too?
             player.GetComponent<PlayerController>().FaceObject(enemy.transform);
+            enemy.IsInCombat = true;
         }
 
         public void EndCombat()

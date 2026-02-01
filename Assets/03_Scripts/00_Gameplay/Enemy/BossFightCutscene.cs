@@ -6,6 +6,14 @@ public class BossFightCutscene : BaseEnemyController
     private float _currentDistance;
     private bool _hastrigger;
 
+    [SerializeField] CombatTrigger trigger;
+
+    public void OnHitCombatHitbox(GameObject trigger)
+    {
+        ChangeState(EnemyState.Idle);
+        _animator.CrossFade("Anim_Idle", 0.2f);
+    }
+
     public override void CheckTransitions()
     {
         _currentDistance = Vector3.Distance(transform.position, playerTransform.position);

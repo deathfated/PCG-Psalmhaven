@@ -222,6 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8731251978769011172}
   - component: {fileID: 4844554911214368999}
+  - component: {fileID: 5642972833730438197}
   m_Layer: 6
   m_Name: Prefab_HumanKeeper
   m_TagString: Untagged
@@ -267,6 +268,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5642972833730438197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1502295092758754992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fa5e4d5f9c4452429ddb55a2d9cd107, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Psalmhaven.Enemy
+  maxHealth: 10
+  currentHealth: 0
+  maskName: 
+  combatActions: []
 --- !u!1 &1538750336072672569
 GameObject:
   m_ObjectHideFlags: 0
