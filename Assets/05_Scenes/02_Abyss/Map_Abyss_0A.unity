@@ -14610,6 +14610,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 788036648}
+  - component: {fileID: 788036649}
   m_Layer: 10
   m_Name: Spawnpoint 1
   m_TagString: Untagged
@@ -14632,6 +14633,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1838005514}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &788036649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788036647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 271ff7930f2420e4ba911acdb810ba33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TriggerTransition
+  targetSpawnPoint: 0
+  targetSceneIndex: 0
+  spawnPoint: {fileID: 788036648}
 --- !u!1 &827213002
 GameObject:
   m_ObjectHideFlags: 0
@@ -29744,7 +29760,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd9a5fec490fc7344965c71ba8ffa8f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
-  triggerTransitions: []
+  triggerTransitions:
+  - {fileID: 788036649}
+  - {fileID: 93141163}
 --- !u!4 &1838005514
 Transform:
   m_ObjectHideFlags: 0

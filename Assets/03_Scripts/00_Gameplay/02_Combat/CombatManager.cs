@@ -52,7 +52,11 @@ namespace Psalmhaven
             //playerController = player.GetComponent<PlayerController>();
             ReAssignPlayer();
             hUD = UIManager.instance.gameObject;
+
+
         }
+
+
 
         public void StartCombat()
         {
@@ -67,6 +71,11 @@ namespace Psalmhaven
             //player face enemy, TODO: enemy too?
             //player.GetComponent<PlayerController>().FaceObject(enemy.transform);
             enemy.IsInCombat = true;
+
+            //temporary place
+            TransitionBoss TB = GameObject.FindWithTag("Entity").GetComponent<TransitionBoss>();
+            Debug.Log("POPO " + TB);
+            gameoverPanel.GetComponentInChildren<UnityEngine.UI.Button>().onClick.AddListener(TB.TriggerCutsceneBossFirst);
         }
 
         public void EndCombat()

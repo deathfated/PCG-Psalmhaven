@@ -7,6 +7,12 @@ public class TransitionBoss : MonoBehaviour
     public PlayerController playerController;
     public Transform enemyTransform;
 
+    private void Start()
+    {
+        playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+
+    }
+
     public void TriggerCutsceneBossFirst()
     {
         playerController.transform.localPosition = Vector3.zero;

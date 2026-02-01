@@ -24884,6 +24884,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1513794270314530116, guid: 90f5b085059fe754da0fb3d1f761932d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513794270314530116, guid: 90f5b085059fe754da0fb3d1f761932d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513794270314530116, guid: 90f5b085059fe754da0fb3d1f761932d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1776413810}
+    - target: {fileID: 1513794270314530116, guid: 90f5b085059fe754da0fb3d1f761932d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513794270314530116, guid: 90f5b085059fe754da0fb3d1f761932d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: TriggerCutsceneBossFirst
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513794270314530116, guid: 90f5b085059fe754da0fb3d1f761932d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: TransitionBoss, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513794270314530116, guid: 90f5b085059fe754da0fb3d1f761932d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6424982204864752133, guid: 90f5b085059fe754da0fb3d1f761932d, type: 3}
       propertyPath: m_Name
       value: CombatManager
@@ -77987,6 +78015,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Entity
       objectReference: {fileID: 0}
+    - target: {fileID: 1805031927540266796, guid: d060ffe2ca8d54d46896cd947b3fb753, type: 3}
+      propertyPath: m_TagString
+      value: Entity
+      objectReference: {fileID: 0}
     - target: {fileID: 3909398031648933631, guid: d060ffe2ca8d54d46896cd947b3fb753, type: 3}
       propertyPath: enemyTransform
       value: 
@@ -78058,6 +78090,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8172876654723117837, guid: d060ffe2ca8d54d46896cd947b3fb753, type: 3}
   m_PrefabInstance: {fileID: 1776413807}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1776413810 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3909398031648933631, guid: d060ffe2ca8d54d46896cd947b3fb753, type: 3}
+  m_PrefabInstance: {fileID: 1776413807}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3072395ab5b07214c8048496417b4831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TransitionBoss
 --- !u!1 &1777912364
 GameObject:
   m_ObjectHideFlags: 0
@@ -92877,7 +92920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271ff7930f2420e4ba911acdb810ba33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TriggerTransition
-  targetSpawnPoint: 1
+  targetSpawnPoint: 0
   targetSceneIndex: 3
   spawnPoint: {fileID: 670360112}
 --- !u!1 &2143978167
