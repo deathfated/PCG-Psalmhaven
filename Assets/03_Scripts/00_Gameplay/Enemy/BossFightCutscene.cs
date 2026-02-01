@@ -43,7 +43,7 @@ public class BossFightCutscene : BaseEnemyController
         PlayerController player = playerTransform.GetComponent<PlayerController>();
         if (player != null)
         {
-            //player.DisableMovement();
+            player.DisableMovement();
         }
     }
 

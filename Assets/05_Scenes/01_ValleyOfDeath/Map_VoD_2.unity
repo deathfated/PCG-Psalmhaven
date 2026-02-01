@@ -52524,7 +52524,7 @@ Transform:
   m_GameObject: {fileID: 1142076917}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: -0.05, z: 2.07}
+  m_LocalPosition: {x: -0, y: -0.05, z: 0.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -80036,9 +80036,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2050539991377686794, guid: 90f5b085059fe754da0fb3d1f761932d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2050539991377686794, guid: 90f5b085059fe754da0fb3d1f761932d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2050539991377686794, guid: 90f5b085059fe754da0fb3d1f761932d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2050539991377686794, guid: 90f5b085059fe754da0fb3d1f761932d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2050539991377686794, guid: 90f5b085059fe754da0fb3d1f761932d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2050539991377686794, guid: 90f5b085059fe754da0fb3d1f761932d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6424982204864752133, guid: 90f5b085059fe754da0fb3d1f761932d, type: 3}
       propertyPath: m_Name
       value: CombatManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6744408115185750463, guid: 90f5b085059fe754da0fb3d1f761932d, type: 3}
+      propertyPath: m_text
+      value: ...
       objectReference: {fileID: 0}
     - target: {fileID: 7068094399530217479, guid: 90f5b085059fe754da0fb3d1f761932d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -80080,6 +80108,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8679446797365148299, guid: 90f5b085059fe754da0fb3d1f761932d, type: 3}
+      propertyPath: m_text
+      value: "Just another Faceless to rot in the depths of Aeterna.\n "
+      objectReference: {fileID: 0}
     - target: {fileID: 8877933190664025874, guid: 90f5b085059fe754da0fb3d1f761932d, type: 3}
       propertyPath: hUD
       value: 
@@ -80092,6 +80124,30 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1597220956}
+    - target: {fileID: 8880071856382885141, guid: 90f5b085059fe754da0fb3d1f761932d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880071856382885141, guid: 90f5b085059fe754da0fb3d1f761932d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880071856382885141, guid: 90f5b085059fe754da0fb3d1f761932d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880071856382885141, guid: 90f5b085059fe754da0fb3d1f761932d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880071856382885141, guid: 90f5b085059fe754da0fb3d1f761932d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880071856382885141, guid: 90f5b085059fe754da0fb3d1f761932d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

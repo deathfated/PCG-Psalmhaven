@@ -52,6 +52,11 @@ namespace Psalmhaven
 
         #endregion
 
+        public void DisableMovement()
+        {
+            canMove = false;
+        }
+
         public void OnMove(InputAction.CallbackContext context)
         {
             moveInput = context.ReadValue<Vector2>();
