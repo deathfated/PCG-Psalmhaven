@@ -11,7 +11,7 @@ namespace UI
         [SerializeField] protected TextMeshProUGUI amountText;
         public void Start()
         {
-            amountText.text = initialAmount;
+            if (amountText != null) amountText.text = initialAmount;
         }
         public abstract void AnimateIcon();
         public virtual void SetAmount(float amount) 

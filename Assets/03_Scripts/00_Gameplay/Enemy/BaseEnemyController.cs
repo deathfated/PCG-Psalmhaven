@@ -15,7 +15,7 @@ public abstract class BaseEnemyController : MonoBehaviour
     [SerializeField] protected Animator _animator;
     [SerializeField] private EnemyTrigger _enemyTrigger;
 
-    protected Transform player;
+    protected Transform playerTransform;
     protected NavMeshAgent agent;
 
     [SerializeField] protected Transform[] _patrolPoints;
@@ -28,10 +28,15 @@ public abstract class BaseEnemyController : MonoBehaviour
     protected Vector3 _defaultPosition;
     private Quaternion _defaultRotation;
 
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _walkClip;
+    [SerializeField] private AudioClip _runClip;
+    [SerializeField] private AudioClip _attackClip;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindWithTag("Player").transform;
+        playerTransform = GameObject.FindWithTag("Player").transform;
         _defaultPosition = transform.position;
         _defaultRotation = transform.rotation;
 
@@ -75,22 +80,29 @@ public abstract class BaseEnemyController : MonoBehaviour
             switch (currentState)
             {
                 case EnemyState.Idle:
+                    //_audioSource.Stop();
                     _animator.SetTrigger("Idle");
                     IdleBehavior();
                     break;
 
                 case EnemyState.Patrol:
+                    //_audioSource.clip = _walkClip;
+                    //_audioSource.Play();
                     _animator.SetTrigger("Walk");
                     PatrolBehavior();
                     break;
 
                 case EnemyState.Chasing:
+                    //_audioSource.clip = _runClip;
+                    //_audioSource.Play();
                     agent.stoppingDistance = stopDistanceAttack;
                     _animator.SetTrigger("Run");
                     ChaseBehavior();
                     break;
 
                 case EnemyState.Interacting:
+                    _audioSource.Stop();
+                    _audioSource.PlayOneShot(_attackClip);
                     _animator.SetTrigger("Interacting");
                     InteractBehavior();
                     break;
@@ -137,6 +149,11 @@ public abstract class BaseEnemyController : MonoBehaviour
     public virtual void HasTriggerExitEnemy()
     {
 
+    }
+
+    public void PlayWalkAudio()
+    {
+        _audioSource.PlayOneShot(_walkClip);
     }
 
     private IEnumerator RotateBackThenIdle()
@@ -189,8 +206,8 @@ public abstract class BaseEnemyController : MonoBehaviour
     private void ChaseBehavior()
     {
         agent.isStopped = false;
-        agent.destination = player.position;
-        RotateToTarget(player.position);
+        agent.destination = playerTransform.position;
+        RotateToTarget(playerTransform.position);
     }
 
     private void RotateToTarget(Vector3 target)
@@ -209,7 +226,6 @@ public abstract class BaseEnemyController : MonoBehaviour
             rotationSpeed * Time.deltaTime
         );
     }
-
 
     private void InteractBehavior()
     {

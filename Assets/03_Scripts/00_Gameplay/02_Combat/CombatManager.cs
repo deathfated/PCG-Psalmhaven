@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 namespace Psalmhaven
 {
@@ -21,7 +23,9 @@ namespace Psalmhaven
         private int resultRoll = -1;
 
         [SerializeField] float delayRoll;
-        private Button[] buttons;
+        private UnityEngine.UI.Button[] buttons;
+        private Coroutine activeCoroutine;
+
 
         [HideInInspector] public static CombatManager Instance;
 
@@ -43,7 +47,7 @@ namespace Psalmhaven
 
         private void Start()
         {
-            buttons = optionsPanel.GetComponentsInChildren<Button>();
+            buttons = optionsPanel.GetComponentsInChildren<UnityEngine.UI.Button>();
             //diceRoller = UIManager.Instance.GetComponentInChildren<DiceRoller>();
             playerController = player.GetComponent<PlayerController>();
         }
@@ -52,8 +56,12 @@ namespace Psalmhaven
         {
             hUD.gameObject.SetActive(true);
             player.GetComponent<PlayerController>().canMove = false;
-            player.GetComponent<PlayerController>().FaceObject(enemy.transform);
             canvas.gameObject.SetActive(true);
+            ShowPanel(true);
+
+            //player face enemy, TODO: enemy too?
+            player.GetComponent<PlayerController>().FaceObject(enemy.transform);
+            enemy.IsInCombat = true;
         }
 
         public void EndCombat()
@@ -61,7 +69,50 @@ namespace Psalmhaven
             hUD.gameObject.SetActive(false);
             player.GetComponent<PlayerController>().canMove = true;
             canvas.gameObject.SetActive(false);
+            ShowPanel(false);
         }
+
+        public void ShowPanel(bool isShow)
+        {
+            ClearCoroutine();
+            if (isShow)
+            {
+                ShowRollDice();
+            }
+            else
+            {
+                HideRollDice();
+            }
+        }
+
+        private void ClearCoroutine()
+        {
+            if (activeCoroutine != null)
+            {
+                StopCoroutine(activeCoroutine);
+            }
+        }
+
+        private void ShowRollDice()
+        {
+            UIManager.instance.OpenBoard(true);
+
+            ChoiceData[] choices = new ChoiceData[6];
+            for (int i = 0; i < player.combatEffectData.Length; i++)
+            {
+                choices[i] = new ChoiceData();
+                choices[i].choiceValue = player.combatEffectData[i];
+                choices[i].revealChoice = true;
+            }
+
+            UIManager.instance.SetUpChoice(choices, ActionAttack);
+        }
+
+        private void HideRollDice()
+        {
+            UIManager.instance.OpenBoard(false);
+        }
+
 
         public void StartActionAttack()
         {
@@ -69,14 +120,13 @@ namespace Psalmhaven
             UIManager.instance.RollDice(number =>
             {
                 resultRoll = number;
-                ActionAttack(resultRoll);
+                //ActionAttack(resultRoll);
             });
             Debug.Log("rando ");
         }
 
         private void ActionAttack(int resultRoll)
         {
-            //yield return new WaitForSeconds(resultRoll);
 
             //check if its string or int
             int playerDmg;
@@ -118,14 +168,14 @@ namespace Psalmhaven
         private void OnEnable()
         {
             Player.OnPlayerDied += ShowGameOver;
-
+            Enemy.OnEnemyDied += EndCombat;
 
         }
 
         private void OnDisable()
         {
             Player.OnPlayerDied -= ShowGameOver;
-
+            Enemy.OnEnemyDied -= EndCombat;
 
         }
 
@@ -147,6 +197,7 @@ namespace Psalmhaven
             //}
 
             //reload scene
+            gameoverPanel.SetActive(false);
             Time.timeScale = 1;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }

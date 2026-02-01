@@ -1,4 +1,5 @@
 using System;
+using UI;
 using UnityEngine;
 
 namespace Psalmhaven
@@ -6,6 +7,7 @@ namespace Psalmhaven
     public class Player : Character
     {
         public int currentMask;
+        public string[] combatEffectData;
         public string[] combatActions;
         public string[] combatActions2;
         public int[] runActions;
@@ -16,6 +18,13 @@ namespace Psalmhaven
         {
             Debug.Log("Anjir mati");
             OnPlayerDied?.Invoke();
+
+        }
+
+        public override void TakeDamage(float damage)
+        {
+            base.TakeDamage(damage);
+            UIManager.instance.SetHealth(currentHealth);
 
         }
     }

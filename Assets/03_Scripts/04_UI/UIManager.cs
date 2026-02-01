@@ -4,6 +4,7 @@ using Psalmhaven;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -21,12 +22,21 @@ namespace UI
         [SerializeField] private PauseWindow pauseWindow;
         [HideInInspector] public static UIManager instance;
 
+        [Header("Game Currency")]
+        [SerializeField] private TextMeshProUGUI goldCurrency;
+
         private List<ChoiceData> activeChoices = new();
         private UnityAction<int> OnRollDiceAction;
+
+        private Coroutine closeCoroutine;
+
+        private bool isRoll = false;
         private void Awake()
         {
             if (instance == null) instance = this;
             else Destroy(gameObject);
+
+            DontDestroyOnLoad(gameObject);
         }
 
         public void OpenBoard(bool status) 
@@ -34,10 +44,32 @@ namespace UI
             if (status)
             {
                 board.OpenWindow();
+
+                if(closeCoroutine != null)
+                    StopCoroutine(closeCoroutine);
             }
-            else { 
-                board.CloseWindow(); 
+            else {
+                if (isRoll)
+                {
+                    closeCoroutine = StartCoroutine(WaitForCloseBoardDice());
+                }
+                else
+                {
+                    board.CloseWindow();
+                }
             }            
+        }
+
+        private IEnumerator WaitForCloseBoardDice()
+        {
+            while (isRoll)
+            {
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(1f);
+            closeCoroutine = null;
+            board.CloseWindow();
         }
 
         public void SetUpChoice(ChoiceData[] choices, UnityAction<int> OnCompleteRoll)
@@ -71,11 +103,14 @@ namespace UI
 
         public void RollDice(Action<int> OnDiceRolled)
         {
+            isRoll = true;
             board.RollDice(OnFinishedRoll: (number) => {
                 if(OnDiceRolled != null) OnDiceRolled(number);
 
                 choiceTextList[number].RevealChoice(activeChoices[number].choiceValue);
                 OnRollDiceAction?.Invoke(number);
+
+                isRoll = false;
             });
         }
 
@@ -122,6 +157,11 @@ namespace UI
         {
             if (pauseWindow.isPaused) pauseWindow.CloseWindow();
             else pauseWindow.OpenWindow();
+        }
+
+        public void UpdateCurrency(string currency)
+        {
+            goldCurrency.text = currency;
         }
     }
 }

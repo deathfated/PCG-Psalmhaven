@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class StaticNonInteraction : BaseInteraction
 {
@@ -17,6 +18,9 @@ public class StaticNonInteraction : BaseInteraction
 
     private Coroutine activeCoroutine;
 
+    public UnityEvent OnEnterDialog;
+    public UnityEvent OnInteractedDialog;
+
     private void Start()
     {
         _uiPanel.alpha = 0f;
@@ -28,6 +32,7 @@ public class StaticNonInteraction : BaseInteraction
         if (_hasInteract)
             return;
 
+        OnEnterDialog?.Invoke();
         _hasInteract = true;
         _indexDialog = 0;
         ClearCoroutine();
@@ -83,6 +88,7 @@ public class StaticNonInteraction : BaseInteraction
             {
                 yield return Fade(_uiPanel, 1, 0);
                 _hasInteract = false;
+                OnInteractedDialog?.Invoke();
                 yield break;
             }
             else

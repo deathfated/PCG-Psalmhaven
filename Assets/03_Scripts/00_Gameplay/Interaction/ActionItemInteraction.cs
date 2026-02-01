@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ActionItemInteraction : BaseInteraction
 {
+    [Header("Runtime ID")]
+    [SerializeField] private string itemId;
+
     [Header("Canvas Group")]
     [SerializeField] private CanvasGroup uiPanel;
 
@@ -13,10 +16,38 @@ public class ActionItemInteraction : BaseInteraction
     public ItemEffectData[] interactEffectData;
     //Dummy 
     protected Character playerCharacter;
+
     private void Start()
     {
         playerCharacter = GameObject.FindWithTag("Player").GetComponent<Character>();
         uiPanel.alpha = 0f;
+
+        LoadRuntimeState();
+    }
+
+    private void LoadRuntimeState()
+    {
+        if (ItemInteractionRuntimeStore.Instance == null)
+            return;
+
+        if (ItemInteractionRuntimeStore.Instance.TryGet(itemId, out var states))
+        {
+            for (int i = 0; i < interactEffectData.Length; i++)
+            {
+                interactEffectData[i].hasInteract = states[i];
+            }
+        }
+    }
+
+    private void SaveRuntimeState()
+    {
+        bool[] states = new bool[interactEffectData.Length];
+        for (int i = 0; i < interactEffectData.Length; i++)
+        {
+            states[i] = interactEffectData[i].hasInteract;
+        }
+
+        ItemInteractionRuntimeStore.Instance.Set(itemId, states);
     }
 
     public override void TriggerEnter(Collider other)
@@ -47,6 +78,8 @@ public class ActionItemInteraction : BaseInteraction
             interactEffectData[diceNumber].interactEffect.ItemInteract(playerCharacter);
             interactEffectData[diceNumber].hasInteract = true;
         }
+
+        SaveRuntimeState();
     }
 
     public void CloseInteraction()
@@ -65,14 +98,17 @@ public class ActionItemInteraction : BaseInteraction
 
     public void ShowPanel(bool isShow)
     {
+        Debug.Log("ShowPanel Dice");
         ClearCoroutine();
         if (isShow)
         {
-            activeCoroutine = StartCoroutine(Fade(uiPanel, 0, 1, onComplete : ShowRollDice));
+            ShowRollDice();
+            activeCoroutine = StartCoroutine(Fade(uiPanel, 0, 1));
         }
         else
         {
-            activeCoroutine = StartCoroutine(Fade(uiPanel, 1, 0, onComplete: HideRollDice));
+            HideRollDice();
+            activeCoroutine = StartCoroutine(Fade(uiPanel, 1, 0));
         }
     }
 

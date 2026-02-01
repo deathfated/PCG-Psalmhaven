@@ -24,7 +24,7 @@ public class PatrolEnemyContoller : BaseEnemyController
         if (currentState == EnemyState.Interacting)
             return;
 
-        currentDistance = Vector3.Distance(transform.position, player.position);
+        currentDistance = Vector3.Distance(transform.position, playerTransform.position);
 
         if (currentDistance <= _chaseRange && currentState != EnemyState.Chasing)
         {

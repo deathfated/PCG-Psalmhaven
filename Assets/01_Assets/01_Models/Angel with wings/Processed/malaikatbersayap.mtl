@@ -1,0 +1,7 @@
+#@DL2023 - w:1, h:1
+newmtl x
+map_Kd malaikatbersayap.png
+map_Pr malaikatbersayap_extra.png -imfchain r
+map_Pm malaikatbersayap_extra.png -imfchain g
+map_Ns malaikatbersayap_extra.png -imfchain b
+map_Ni malaikatbersayap_extra.png -imfchain l

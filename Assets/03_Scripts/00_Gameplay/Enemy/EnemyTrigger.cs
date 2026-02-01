@@ -17,6 +17,11 @@ public class EnemyTrigger : MonoBehaviour
         }
     }
 
+    public void OnTriggerEvent()
+    {
+        _controller.EnemyTriggerEnter(true);
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (_controller != null)

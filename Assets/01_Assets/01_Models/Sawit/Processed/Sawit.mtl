@@ -1,0 +1,7 @@
+#@DL2023 - w:64, h:64
+newmtl x
+map_Kd Sawit.png
+map_Pr Sawit_extra.png -imfchain r
+map_Pm Sawit_extra.png -imfchain g
+map_Ns Sawit_extra.png -imfchain b
+map_Ni Sawit_extra.png -imfchain l

@@ -22,6 +22,7 @@ namespace Psalmhaven
 
         [Header("Camera")]
         public Transform camTarget;
+        public bool isOnCamOffset = true;
         public Vector3 camOffset = new Vector3(8.7f, 13f, -9f);
         public float camFollowSmoothTime = -0.05f;
         private Transform cameraTransform;
@@ -38,7 +39,7 @@ namespace Psalmhaven
         void Start()
         {
             cameraTransform = Camera.main.transform;
-            camOffset = cameraTransform.position;
+            if (isOnCamOffset) camOffset = cameraTransform.position;
             _animator = GetComponent<Animator>();
             rb = GetComponent<Rigidbody>();
             rb.freezeRotation = true;
@@ -50,6 +51,11 @@ namespace Psalmhaven
 
 
         #endregion
+
+        public void DisableMovement()
+        {
+            canMove = false;
+        }
 
         public void OnMove(InputAction.CallbackContext context)
         {

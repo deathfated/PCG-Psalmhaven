@@ -1,0 +1,7 @@
+#@DL2023 - w:32, h:32
+newmtl x
+map_Kd SKULL.png
+map_Pr SKULL_extra.png -imfchain r
+map_Pm SKULL_extra.png -imfchain g
+map_Ns SKULL_extra.png -imfchain b
+map_Ni SKULL_extra.png -imfchain l

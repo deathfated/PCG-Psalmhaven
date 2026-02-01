@@ -15,7 +15,7 @@ namespace UI
         {
             continueButton.onClick.AddListener(() => CloseWindow());
             restartButton.onClick.AddListener(() => SceneTransitionManager.instance.Restart());
-            toHomeButton.onClick.AddListener(() => SceneTransitionManager.instance.LoadSceneAsync(0, false));
+            toHomeButton.onClick.AddListener(() => SceneTransitionManager.instance.LoadSceneAsync(0, false, 0, true));
             exitButton.onClick.AddListener(() => SceneTransitionManager.instance.Exit());
         }
         private void OnDestroy()
