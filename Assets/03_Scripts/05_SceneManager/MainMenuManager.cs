@@ -9,10 +9,12 @@ namespace Psalmhaven
     {
         PlayerController player;
         PlayerInput playerInput;
-        private void Start()
+        Rigidbody rb;
+        private void Awake()
         {
             playerInput = UIManager.instance.GetComponent<PlayerInput>();
             player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+            rb = player.GetComponent<Rigidbody>();
             EnableInput(false);
 
             UIManager.instance.OpenDisclaimer(true, () => {
@@ -25,6 +27,7 @@ namespace Psalmhaven
 
         private void EnableInput(bool status)
         {
+            rb.isKinematic = !status;
             player.enabled = status;
             playerInput.enabled = status;
         }
