@@ -23,6 +23,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/05_Scenes/02_Abyss/Map_Abyss_1.unity
     guid: 915b7bc38ce64114e92f85bac41c140a
+  - enabled: 1
+    path: Assets/05_Scenes/02_Abyss/Map_Abyss_2.unity
+    guid: 957237c6055d6df4bba092746b0d759d
+  - enabled: 1
+    path: Assets/05_Scenes/02_Abyss/Map_Abyss_3.unity
+    guid: d9df2493a6e2d094caf639478ba5fd62
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
   m_UseUCBPForAssetBundles: 0
