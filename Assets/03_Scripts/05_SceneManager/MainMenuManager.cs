@@ -9,21 +9,24 @@ namespace Psalmhaven
     {
         PlayerController player;
         PlayerInput playerInput;
-        private void Awake()
+        private void Start()
         {
             playerInput = UIManager.instance.GetComponent<PlayerInput>();
             player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-            player.enabled = false;
-            playerInput.enabled = false;
+            EnableInput(false);
 
-            UIManager.instance.StartMainMenu(CloseMainMenu);
+            UIManager.instance.StartMainMenu(null, CloseMainMenu);
+        }
+
+        private void EnableInput(bool status)
+        {
+            player.enabled = status;
+            playerInput.enabled = status;
         }
 
         private void CloseMainMenu(int number)
         {
-            player.enabled = true;
-            playerInput.enabled = true;
-            UIManager.instance.CloseMainMenu();
+            StartCoroutine(UIManager.instance.CloseMainMenu(()=> EnableInput(true), CloseMainMenu));
         }
     }
 }

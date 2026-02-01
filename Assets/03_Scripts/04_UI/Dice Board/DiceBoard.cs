@@ -10,7 +10,7 @@ namespace UI
         [SerializeField] private float openPosY;
         [SerializeField] private Script_Dice dice;
 
-        private RectTransform rectTransform;
+        [SerializeField] private RectTransform rectTransform;
         private float closePosY;
         private readonly float openAnimateDuration = 0.3f;
         private void Start()
