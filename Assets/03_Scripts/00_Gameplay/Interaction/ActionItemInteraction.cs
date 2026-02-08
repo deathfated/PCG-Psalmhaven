@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using UI;
+using Psalmhaven.UI;
 using UnityEngine;
 using UnityEngine.Events;
 

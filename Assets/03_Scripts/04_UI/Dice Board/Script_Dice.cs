@@ -2,10 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-namespace UI
+namespace Psalmhaven.UI
 {
     public class Script_Dice : MonoBehaviour
     {
@@ -15,11 +14,22 @@ namespace UI
         private readonly float time= 0.2f;
         public bool canRoll = false;
         public bool isRoll = false;
+        private Unity.Mathematics.Random randominator;
+
+        private void Start()
+        {
+            //init Unity.Math random
+            uint seed = (uint)DateTime.Now.Ticks;
+            randominator = new Unity.Mathematics.Random(seed);
+        }
+
+
         public void RollDice(Action OnStartRoll = null, Action<int> OnFinishedRoll = null)
         {
             if (canRoll)
             {
-                int number = UnityEngine.Random.Range(0, 5);
+                //int number = UnityEngine.Random.Range(0, 5);
+                int number = randominator.NextInt(0,5);
                 StartCoroutine(Randomize(number, OnStartRoll, OnFinishedRoll));
             }
         }

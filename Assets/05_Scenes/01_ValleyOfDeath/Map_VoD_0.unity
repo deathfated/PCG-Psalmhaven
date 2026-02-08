@@ -1490,7 +1490,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8364205726282963144, guid: 74a5b999ba49d484991cd0c8954e60b9, type: 3}
       propertyPath: m_Size.x
-      value: 2.4137597
+      value: 1.23
       objectReference: {fileID: 0}
     - target: {fileID: 8364205726282963144, guid: 74a5b999ba49d484991cd0c8954e60b9, type: 3}
       propertyPath: m_Size.y
@@ -1502,7 +1502,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8364205726282963144, guid: 74a5b999ba49d484991cd0c8954e60b9, type: 3}
       propertyPath: m_Center.x
-      value: -0.29312015
+      value: -0.87
       objectReference: {fileID: 0}
     - target: {fileID: 8643404096962024127, guid: 74a5b999ba49d484991cd0c8954e60b9, type: 3}
       propertyPath: dialogData.Array.size
@@ -1556,15 +1556,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9144319232217131395, guid: 5eb8f5ae99341bb4e87cd6164cb6f46a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.195
+      value: 0.41
       objectReference: {fileID: 0}
     - target: {fileID: 9144319232217131395, guid: 5eb8f5ae99341bb4e87cd6164cb6f46a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.278
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 9144319232217131395, guid: 5eb8f5ae99341bb4e87cd6164cb6f46a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.091
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9144319232217131395, guid: 5eb8f5ae99341bb4e87cd6164cb6f46a, type: 3}
       propertyPath: m_LocalRotation.w

@@ -811,7 +811,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8364205726282963144, guid: 74a5b999ba49d484991cd0c8954e60b9, type: 3}
       propertyPath: m_Size.z
-      value: 6.809683
+      value: 4.34
       objectReference: {fileID: 0}
     - target: {fileID: 8364205726282963144, guid: 74a5b999ba49d484991cd0c8954e60b9, type: 3}
       propertyPath: m_Center.x
@@ -24480,6 +24480,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 655433593563569263, guid: 7cd79b71c45d3bc48a0a5815cf4d95c0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5590973369436168613, guid: 7cd79b71c45d3bc48a0a5815cf4d95c0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.65645
@@ -38328,6 +38332,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2146687791}
     m_Modifications:
+    - target: {fileID: 486066832835642739, guid: e54ae63a853a4c44ba98157581582085, type: 3}
+      propertyPath: m_Size.y
+      value: 1.47
+      objectReference: {fileID: 0}
     - target: {fileID: 812527544092991799, guid: e54ae63a853a4c44ba98157581582085, type: 3}
       propertyPath: OnPlayerHit.m_PersistentCalls.m_Calls.Array.size
       value: 1

@@ -1,5 +1,5 @@
 using System;
-using UI;
+using Psalmhaven.UI;
 using UnityEngine;
 
 namespace Psalmhaven
@@ -13,7 +13,7 @@ namespace Psalmhaven
         public int[] runActions;
 
         public static event Action OnPlayerDied;
-
+          
         public override void Die()
         {
             Debug.Log("Anjir mati");

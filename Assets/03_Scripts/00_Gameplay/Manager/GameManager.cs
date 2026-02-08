@@ -1,5 +1,5 @@
 using Psalmhaven;
-using UI;
+using Psalmhaven.UI;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour

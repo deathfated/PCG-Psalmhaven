@@ -1,6 +1,6 @@
 
 using DG.Tweening;
-using Psalmhaven;
+using UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace UI
+namespace Psalmhaven.UI
 { 
     public class UIManager : MonoBehaviour
     {
@@ -96,6 +96,11 @@ namespace UI
                     choiceTextList[i].ShowChoice();
                 }
             }
+        }
+
+        public void RollDiceClick()
+        {
+            RollDice(null);
         }
 
         public void RollDice(InputAction.CallbackContext context)

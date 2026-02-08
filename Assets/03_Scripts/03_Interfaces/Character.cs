@@ -1,6 +1,4 @@
-using UI;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 public interface ICharacter
 {
@@ -20,12 +18,10 @@ public abstract class Character : MonoBehaviour, ICharacter
 
     public float MaxHealth => maxHealth;
     public float CurrentHealth => currentHealth;
-    private UIManager manager;
 
     protected virtual void Awake()
     {
         currentHealth = maxHealth;
-        //manager = UIManager.instance;
     }
 
     public virtual void TakeDamage(float damage)

@@ -1,9 +1,8 @@
-using DG.Tweening;
 using System;
-using System.Collections.Generic;
+using UI;
 using UnityEngine;
 
-namespace UI
+namespace Psalmhaven.UI
 {
     public class DiceBoard : GameWindow
     {

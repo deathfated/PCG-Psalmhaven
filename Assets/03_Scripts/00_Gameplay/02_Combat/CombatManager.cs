@@ -1,10 +1,5 @@
-using System;
-using System.Collections;
-using UI;
+using Psalmhaven.UI;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 namespace Psalmhaven
 {
@@ -12,17 +7,12 @@ namespace Psalmhaven
     {
         [SerializeField] Player player;
         [SerializeField] Enemy enemy;
-
-        private PlayerController playerController;
-
         [SerializeField] GameObject optionsPanel;
         [SerializeField] GameObject gameoverPanel;
-        //private DiceRoller diceRoller;
         [SerializeField] GameObject hUD;
         [SerializeField] Canvas canvas;
-        private int resultRoll = -1;
-
         [SerializeField] float delayRoll;
+
         private UnityEngine.UI.Button[] buttons;
         private Coroutine activeCoroutine;
 
@@ -50,15 +40,8 @@ namespace Psalmhaven
         private void Start()
         {
             buttons = optionsPanel.GetComponentsInChildren<UnityEngine.UI.Button>();
-            //diceRoller = UIManager.Instance.GetComponentInChildren<DiceRoller>();
-            //playerController = player.GetComponent<PlayerController>();
             ReAssignPlayer();
-            //hUD = UIManager.instance.gameObject;
-
-
         }
-
-
 
         public void StartCombat()
         {
@@ -88,7 +71,6 @@ namespace Psalmhaven
         {
             Debug.Log("End Combat");
             ShowPanel(false);
-            //hUD.gameObject.SetActive(false);
             if (player == null) ReAssignPlayer();
             player.GetComponent<PlayerController>().canMove = true;
             canvas.gameObject.SetActive(false);
@@ -133,18 +115,6 @@ namespace Psalmhaven
         private void HideRollDice()
         {
             UIManager.instance.OpenBoard(false);
-        }
-
-
-        public void StartActionAttack()
-        {
-
-            UIManager.instance.RollDice(number =>
-            {
-                resultRoll = number;
-                //ActionAttack(resultRoll);
-            });
-            Debug.Log("rando ");
         }
 
         private void ActionAttack(int resultRoll)
@@ -211,21 +181,10 @@ namespace Psalmhaven
 
         public void RestartGame() //repurposed for first boss "death"
         {
-            /*destroy dontdestroyonload objects
-            //foreach (var obj in GameObject.FindGameObjectsWithTag("Persistent"))
-            //{
-            //    Destroy(obj);
-            //}
-
-            //reload scene
-            gameoverPanel.SetActive(false);
-            Time.timeScale = 1;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);*/
-
             gameoverPanel.SetActive(false);
             hUD.SetActive(true);
             Time.timeScale = 1f;
-            //SceneManager.
+
             if (isFirstFight)
             {
                 isFirstFight = false;
@@ -235,8 +194,6 @@ namespace Psalmhaven
                 SceneTransitionManager.instance.Restart();
             }
         }
-
-
 
         private void ReAssignPlayer()
         {
