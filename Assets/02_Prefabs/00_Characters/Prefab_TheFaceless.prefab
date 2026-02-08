@@ -544,7 +544,8 @@ MonoBehaviour:
   maxSlopeAngle: 45
   camTarget: {fileID: 5920002315710832023}
   isOnCamOffset: 1
-  camOffset: {x: 27, y: 37, z: -27}
+  camOffsetCombat: {x: 13.7, y: 19.5, z: -13.4}
+  camOffsetMain: {x: 27, y: 37, z: -27}
   camFollowSmoothTime: -0.05
   rotationXOffset: -10
   positionYOffset: -1

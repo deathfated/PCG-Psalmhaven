@@ -19,27 +19,31 @@ namespace Psalmhaven
         public float groundCheckDistance = 0.3f;
         public LayerMask groundLayer;
         public float maxSlopeAngle = 45f;
+        public bool isGrounded;
+        private Vector3 groundNormal = Vector3.up;
 
         [Header("Camera")]
         public Transform camTarget;
         public bool isOnCamOffset = true;
-        public Vector3 camOffset = new Vector3(8.7f, 13f, -9f);
+        public Vector3 camOffset = new Vector3(10f, 10f, -10f);
+        public Vector3 camOffsetCombat = new Vector3(0, 0, 0);
+        public Vector3 camOffsetMain = new Vector3(0, 0, 0);
         public float camFollowSmoothTime = -0.05f;
-        private Transform cameraTransform;
         public float rotationXOffset = -10f;
-        public float positionYOffset = -1f;  
-
+        public float positionYOffset = -1f;
+        private Transform cameraTransform;
         private Vector3 velocity;
+
         private Rigidbody rb;
         private Vector2 moveInput;
         private Animator _animator;
-        public bool isGrounded;
-        private Vector3 groundNormal = Vector3.up;
 
         void Start()
         {
             cameraTransform = Camera.main.transform;
-            if (isOnCamOffset) camOffset = cameraTransform.position;
+            camOffsetMain = cameraTransform.position;
+            if (isOnCamOffset) camOffset = camOffsetMain;
+
             _animator = GetComponent<Animator>();
             rb = GetComponent<Rigidbody>();
             rb.freezeRotation = true;
@@ -47,8 +51,16 @@ namespace Psalmhaven
 
         #region CameraLogic
 
-        
+        public void SwitchToCombatCam()
+        {
+            //camOffsetCombat = cameraTransform.position + new Vector3(-13, -16, -13);
+            camOffset = camOffsetCombat;
+        }
 
+        public void SwitchToMainCam()
+        {
+            camOffset = camOffsetMain;
+        }
 
         #endregion
 

@@ -53,9 +53,10 @@ namespace Psalmhaven
             canvas.gameObject.SetActive(true);
             ShowPanel(true);
 
-            //player face enemy, TODO: enemy too?
-            //player.GetComponent<PlayerController>().FaceObject(enemy.transform);
             if (enemy == null) ReAssignEnemy();
+            //player face enemy, TODO: enemy too?
+            player.GetComponent<PlayerController>().FaceObject(enemy.transform);
+            player.GetComponent<PlayerController>().SwitchToCombatCam();
             enemy.IsInCombat = true;
 
             //temporary place
@@ -73,6 +74,7 @@ namespace Psalmhaven
             ShowPanel(false);
             if (player == null) ReAssignPlayer();
             player.GetComponent<PlayerController>().canMove = true;
+            player.GetComponent<PlayerController>().SwitchToMainCam();
             canvas.gameObject.SetActive(false);
         }
 
@@ -176,7 +178,8 @@ namespace Psalmhaven
             gameoverPanel.SetActive(true);
             optionsPanel.SetActive(false);
             hUD.SetActive(false);
-            Time.timeScale = 0f; // optional pause
+            Time.timeScale = 0f;
+            player.GetComponent<PlayerController>().SwitchToMainCam();
         }
 
         public void RestartGame() //repurposed for first boss "death"
@@ -184,6 +187,8 @@ namespace Psalmhaven
             gameoverPanel.SetActive(false);
             hUD.SetActive(true);
             Time.timeScale = 1f;
+            player.GetComponent<PlayerController>().SwitchToMainCam();
+            Debug.Log("POPOPO");
 
             if (isFirstFight)
             {
