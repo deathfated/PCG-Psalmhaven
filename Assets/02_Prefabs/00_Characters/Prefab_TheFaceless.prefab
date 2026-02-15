@@ -542,14 +542,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   maxSlopeAngle: 45
+  isGrounded: 0
   camTarget: {fileID: 5920002315710832023}
   isOnCamOffset: 1
-  camOffsetCombat: {x: 13.7, y: 19.5, z: -13.4}
-  camOffsetMain: {x: 27, y: 37, z: -27}
+  camOffset: {x: 0, y: 0, z: 0}
+  camOffsetCombat: {x: 10, y: 15, z: -10}
+  camOffsetMain: {x: 0, y: 0, z: 0}
   camFollowSmoothTime: -0.05
   rotationXOffset: -10
   positionYOffset: -1
-  isGrounded: 0
 --- !u!136 &6446158079403429929
 CapsuleCollider:
   m_ObjectHideFlags: 0

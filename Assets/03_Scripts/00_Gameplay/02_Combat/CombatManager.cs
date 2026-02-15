@@ -51,6 +51,7 @@ namespace Psalmhaven
             player.GetComponent<PlayerController>().canMove = false;
             
             canvas.gameObject.SetActive(true);
+            optionsPanel.SetActive(true);
             ShowPanel(true);
 
             if (enemy == null) ReAssignEnemy();
@@ -178,7 +179,7 @@ namespace Psalmhaven
             gameoverPanel.SetActive(true);
             optionsPanel.SetActive(false);
             hUD.SetActive(false);
-            Time.timeScale = 0f;
+            //Time.timeScale = 0f;
             player.GetComponent<PlayerController>().SwitchToMainCam();
         }
 
