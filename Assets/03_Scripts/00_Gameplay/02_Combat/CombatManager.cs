@@ -20,6 +20,7 @@ namespace Psalmhaven
 
 
         [HideInInspector] public static CombatManager Instance;
+        public VibrationManager vibrationManager;
 
         private void Awake()
         {
@@ -39,6 +40,7 @@ namespace Psalmhaven
 
         private void Start()
         {
+            vibrationManager.VibrateController(0.5f, 0.5f, 0.5f); 
             buttons = optionsPanel.GetComponentsInChildren<UnityEngine.UI.Button>();
             ReAssignPlayer();
         }
