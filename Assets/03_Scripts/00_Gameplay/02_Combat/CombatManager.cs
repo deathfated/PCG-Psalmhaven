@@ -16,7 +16,7 @@ namespace Psalmhaven
         private UnityEngine.UI.Button[] buttons;
         private Coroutine activeCoroutine;
 
-        private bool isFirstFight = true;
+        [SerializeField] private bool isFirstFight = true;
 
 
         [HideInInspector] public static CombatManager Instance;
@@ -26,21 +26,18 @@ namespace Psalmhaven
         {
             if (Instance != null && Instance != this)
             {
-                // If an instance already exists and it's not this one, destroy this new object
                 Destroy(this.gameObject);
             }
             else
             {
-                // Otherwise, set this as the only instance
                 Instance = this;
-                // Optional: keep the object alive across scene loads
                 DontDestroyOnLoad(this.gameObject);
             }
         }
 
         private void Start()
         {
-            vibrationManager.VibrateController(0.5f, 0.5f, 0.5f); 
+            if (vibrationManager != null) vibrationManager.VibrateController(0.5f, 0.5f, 0.5f); 
             buttons = optionsPanel.GetComponentsInChildren<UnityEngine.UI.Button>();
             ReAssignPlayer();
         }
@@ -59,10 +56,10 @@ namespace Psalmhaven
             if (enemy == null) ReAssignEnemy();
             //player face enemy, TODO: enemy too?
             player.GetComponent<PlayerController>().FaceObject(enemy.transform);
-            player.GetComponent<PlayerController>().SwitchToCombatCam();
+            //player.GetComponent<PlayerController>().SwitchToCombatCam(); //TODO: get camera switching working
             enemy.IsInCombat = true;
 
-            //temporary place
+            //temporary, used in first boss fight only
             if (isFirstFight)
             {
                 TransitionBoss TB = GameObject.FindWithTag("Entity").GetComponent<TransitionBoss>();
@@ -151,15 +148,15 @@ namespace Psalmhaven
                 //if (resultDamage < 0) resultDamage = 0; //checking if enemy too tanky
                 dmg = resultDamage;
                 enemy.TakeDamage(dmg);
+                Debug.Log($"enemy takes {dmg} damage");
 
             }
             else //player gets damage
             {
                 dmg = resultDamage;
                 player.TakeDamage(dmg);
+                Debug.Log($"player takes {dmg} damage");
             }
-
-            Debug.Log("end = " + dmg);
         }
 
         private void OnEnable()
